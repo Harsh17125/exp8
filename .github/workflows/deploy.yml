@@ -1,0 +1,30 @@
+permissions:
+  contents: write   # allows GitHub Actions to push
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main   # or 'master' if your branch is master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Optional: list files (debug)
+      - name: List files
+        run: ls -R
+
+      # 3️⃣ Deploy root folder to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./      # root folder now contains index.html
+          force_orphan: true   # overwrite gh-pages branch completely
