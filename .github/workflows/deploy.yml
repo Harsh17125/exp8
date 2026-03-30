@@ -27,4 +27,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./      # root folder now contains index.html
-          force_orphan: true   # overwrite gh-pages branch completely
+          force_orphan: true   
